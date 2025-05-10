@@ -1,0 +1,13 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  max-height: auto;
+  background-color: #ebeef3;
+}
+
+.app-articles {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+

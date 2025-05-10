@@ -1,0 +1,19 @@
+.article-head {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.article-body {
+    padding: 16px;
+  display: flex;
+  justify-self: center;
+  flex-wrap: wrap;
+  background-color: #fff;
+  min-height: 70vh;
+  max-height: auto;
+  width: 914px;
+  text-overflow: clip;
+  word-break: break-all;
+  overflow-wrap: anywhere / break-word
+}

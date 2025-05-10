@@ -1,0 +1,26 @@
+.blog-header {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+}
+
+// .blog-header:hover {
+// }
+
+.header-buttons {
+  margin-right: 24px;
+}
+
+.header-title {
+  font-weight: 400;
+  margin-left: 22px;
+  text-decoration: none;
+  color: #000;
+}
+
+.header-title:hover {
+  color: #366eff;
+  cursor: pointer;
+}
