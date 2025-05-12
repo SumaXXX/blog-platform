@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useState, useEffect, Suspense } from 'react'
-import { Await, useLoaderData } from 'react-router-dom'
+import { Await, useLoaderData, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const schema = yup.object().shape({
@@ -15,6 +15,8 @@ const schema = yup.object().shape({
 })
 
 function EditArticle() {
+  const navigate = useNavigate()
+
   const { article } = useLoaderData()
   const { user } = useSelector(state => state.BlogPlatformApp)
   const [slug, setSlug] = useState('')
@@ -105,8 +107,9 @@ function EditArticle() {
       ...data,
       tags: filteredTags,
     }
-    console.log(filteredTags)
     updateArticle(articleData, slug)
+    navigate('/articles/1')
+
   }
 
   return (

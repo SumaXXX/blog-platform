@@ -9,7 +9,7 @@ import { useState } from 'react'
 function ArticleCard({ data, page, isInArticle }) {
   const [favorited, setFavorited] = useState(data.favorited)
   const [likes, setLikes] = useState(data.favoritesCount)
-
+  
   const { user } = useSelector(state => state.BlogPlatformApp)
   const navigate = useNavigate()
   const deleteArticle = async (token, slug) => {

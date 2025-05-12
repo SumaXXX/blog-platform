@@ -4,6 +4,8 @@ import { Button } from 'antd'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { useNavigate } from 'react-router-dom'
+
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -15,6 +17,8 @@ const schema = yup.object().shape({
 })
 
 function NewArticle() {
+  const navigate = useNavigate()
+
   const { user } = useSelector(state => state.BlogPlatformApp)
 
   const [errorMessage, setErrorMessage] = useState('')
@@ -41,8 +45,7 @@ function NewArticle() {
         title: article.title,
         description: article.shortDescription,
         body: article.text,
-        tagList: article.tags
-        ,
+        tagList: article.tags,
       },
     }
     const response = await fetch(url, {
@@ -56,7 +59,7 @@ function NewArticle() {
     if (response.status === 422) {
       throw new Error(`Try again! status: ${response.status}`)
     }
-    console.log(await response.json()) 
+    console.log(await response.json())
   }
 
   const addTag = () => {
@@ -84,6 +87,7 @@ function NewArticle() {
       tags: filteredTags,
     }
     addArticle(articleData)
+    navigate('/articles/1')
   }
 
   return (
@@ -123,7 +127,9 @@ function NewArticle() {
         <span style={{ color: 'rgba(245, 34, 45, 1)' }}>{errors.text?.message}</span>
 
         <p className={classes['label']}>Tags</p>
-        {errorMessage && <span style={{ color: 'rgba(25, 34, 45, 1)', marginBottom: 12 }}>{errorMessage}</span>}
+        {errorMessage && (
+          <span style={{ color: 'rgba(25, 34, 45, 1)', marginBottom: 12 }}>{errorMessage}</span>
+        )}
         {tags.map((tag, index) => (
           <div key={index}>
             <input
@@ -140,7 +146,13 @@ function NewArticle() {
                 setTags(newTags)
               }}
             />
-            <Button style={{marginLeft: 16}} onClick={() => removeTag(index)} type="primary" danger ghost>
+            <Button
+              style={{ marginLeft: 16 }}
+              onClick={() => removeTag(index)}
+              type="primary"
+              danger
+              ghost
+            >
               Delete
             </Button>
           </div>
